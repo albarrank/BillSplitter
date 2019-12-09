@@ -1,45 +1,18 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
+// Pages
+import Landing from "./components/layout/Landing";
 function App() {
-	const [test, setTest] = useState(null);
-
-	useEffect(() => {
-		callTestApi()
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	});
-
-	const callTestApi = async function() {
-		const res = await fetch("/test");
-		const body = await res.json();
-
-		console.log(res);
-		console.log(body);
-	};
-
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<Router>
+			<Fragment>
+				<Switch>
+					<Route exact path="/" component={Landing} />
+				</Switch>
+			</Fragment>
+		</Router>
 	);
 }
 
