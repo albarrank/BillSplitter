@@ -4,13 +4,20 @@ import "./App.css";
 
 // Pages
 import Landing from "./components/layout/Landing";
+
+// Partials
+import Nav from "./components/layout/Navbar";
+
 function App() {
 	return (
 		<Router>
+			<Nav />
 			<Fragment>
-				<Switch>
-					<Route exact path="/" component={Landing} />
-				</Switch>
+				<section className="container main">
+					<Switch>
+						<Route exact path="/" component={Landing} />
+					</Switch>
+				</section>
 			</Fragment>
 		</Router>
 	);
