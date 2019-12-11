@@ -6,7 +6,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const port = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5050;
 
 app.get("/test", (req, res) => {
 	res.send({ express: "Express server is up" });
@@ -21,6 +21,8 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
 	});
 }
-app.listen(port, () => {
-	console.log(`Server is running on port: ${port}`);
+
+// Run the server
+app.listen(PORT, () => {
+	console.log(`Server is running on PORT: ${PORT}`);
 });
