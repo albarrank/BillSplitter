@@ -1,6 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
+import API from "../../utils/API";
 
-function Landing() {
+const Landing = () => {
+	const [billData, setBillData] = useState({
+		amount: ""
+	});
+
+	const { amount } = billData;
+
+	const onInputChange = (e) => {
+		setBillData({ ...billData, [e.target.name]: e.target.value });
+	};
 	return (
 		<Fragment>
 			<div className="intro">
@@ -15,10 +25,17 @@ function Landing() {
 
 			<div className="total-input">
 				<h3>Please Enter the amount of the bill</h3>
-				<input type="text" placeholder="Enter total here"></input>
+				<input
+					type="text"
+					placeholder="Enter total here"
+					name="amount"
+					value={amount}
+					required
+					onChange={(e) => onInputChange(e)}
+				/>
 			</div>
 		</Fragment>
 	);
-}
+};
 
 export default Landing;
