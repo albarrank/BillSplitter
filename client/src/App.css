@@ -1,6 +1,9 @@
+/*================= Navbar ================ */
 .navbar {
   background-color: rgb(65, 173, 132) !important;
 }
-.fa-money-check-alt {
 
-} 
+/*================= Main Components ================ */
+.main {
+  margin-top: 7rem;
+}
