@@ -10,6 +10,15 @@ const Landing = () => {
 
 	const onInputChange = (e) => {
 		setBillData({ ...billData, [e.target.name]: e.target.value });
+		// if(amount === )
+	};
+
+	const submitTotal = (e) => {
+		e.preventDefault();
+		let startingTotal = amount;
+		let test = parseFloat(startingTotal);
+
+		console.log(test, startingTotal);
 	};
 	return (
 		<Fragment>
@@ -33,6 +42,9 @@ const Landing = () => {
 					required
 					onChange={(e) => onInputChange(e)}
 				/>
+				<button type="submit" onClick={(e) => submitTotal(e)}>
+					submit
+				</button>
 			</div>
 		</Fragment>
 	);
