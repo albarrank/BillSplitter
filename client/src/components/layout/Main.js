@@ -2,7 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 
-const Main = () => {
+const Main = ({
+	location: {
+		state: { total }
+	}
+}) => {
+	console.log(total);
 	return (
 		<Fragment>
 			<div>

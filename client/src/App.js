@@ -1,11 +1,13 @@
+// LIBRARIES
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
-// Pages
+// PAGES
 import Landing from "./components/layout/Landing";
+import Main from "./components/layout/Main";
 
-// Partials
+// PARTIALS
 import Nav from "./components/layout/Navbar";
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
 				<section className="container main">
 					<Switch>
 						<Route exact path="/" component={Landing} />
+						<Route exact path="/main" component={Main} />{" "}
 					</Switch>
 				</section>
 			</Fragment>

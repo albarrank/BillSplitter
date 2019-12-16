@@ -1,14 +1,23 @@
+// LIBRARIES
 import React, { Fragment, useState } from "react";
 import { Redirect } from "react-router-dom";
+
+// API CONNECTION
 import API from "../../utils/API";
-import Main from "./Main.js";
 
 const Landing = () => {
+	// INITIALIZING STATES
 	const [billData, setBillData] = useState({
 		amount: ""
 	});
+	let [redirectState, setRedirectState] = useState({
+		redirect: false,
+		data: ""
+	});
 
+	// DECONSTRUCTION PROPERTIES FROM STATE
 	let { amount } = billData;
+	let { redirect, data } = redirectState;
 
 	const onInputChange = (e) => {
 		// setting state of billData.amount equal to a copy of billData along with the value input in the text box
@@ -35,39 +44,52 @@ const Landing = () => {
 			API.sendTotal(data)
 				.then((res) => {
 					console.log(res.data);
+
+					// setting redirect state along with data passing into props
+					setRedirectState({ redirect: true, data: res.data });
 				})
 				.catch((err) => console.log(err));
 		}
 	};
+	if (redirect)
+		return (
+			<Redirect
+				to={{
+					pathname: "/main",
+					state: { total: data }
+				}}
+			/>
+		);
+	else {
+		return (
+			<Fragment>
+				<div className="intro">
+					<h2>Welcome to BillSplit!</h2>
+					<p>
+						Taking all of the hassle of having to talk and figure
+						out who is paying for what. <br></br>
+						<br></br>Now you can figure it all out with out even
+						having to say a word especially to the ones you hate!
+					</p>
+				</div>
 
-	return (
-		<Fragment>
-			<div className="intro">
-				<h2>Welcome to BillSplit!</h2>
-				<p>
-					Taking all of the hassle of having to talk and figure out
-					who is paying for what. <br></br>
-					<br></br>Now you can figure it all out with out even having
-					to say a word especially to the ones you hate!
-				</p>
-			</div>
-
-			<div className="total-input">
-				<h3>Please Enter the amount of the bill</h3>
-				<input
-					type="text"
-					placeholder="Enter total here"
-					name="amount"
-					value={amount}
-					required
-					onChange={(e) => onInputChange(e)}
-				/>
-				<button type="submit" onClick={(e) => submitTotal(e)}>
-					submit
-				</button>
-			</div>
-		</Fragment>
-	);
+				<div className="total-input">
+					<h3>Please Enter the amount of the bill</h3>
+					<input
+						type="text"
+						placeholder="Enter total here"
+						name="amount"
+						value={amount}
+						required
+						onChange={(e) => onInputChange(e)}
+					/>
+					<button type="submit" onClick={(e) => submitTotal(e)}>
+						submit
+					</button>
+				</div>
+			</Fragment>
+		);
+	}
 };
 
 export default Landing;
