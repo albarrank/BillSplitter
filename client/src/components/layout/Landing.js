@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
+import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
+import Main from "./Main.js";
 
 const Landing = () => {
 	const [billData, setBillData] = useState({
@@ -9,8 +11,11 @@ const Landing = () => {
 	let { amount } = billData;
 
 	const onInputChange = (e) => {
+		// setting state of billData.amount equal to a copy of billData along with the value input in the text box
 		setBillData({ ...billData, [e.target.name]: e.target.value });
+
 		// original regex ^[0-9.]*$
+		// checks to see if the target value of the input box is in the format of US Currency
 		let test = /^[0-9]+(\.+[0-9]{0,2})?$/.test(e.target.value);
 
 		if (!test) {
@@ -20,15 +25,21 @@ const Landing = () => {
 
 	const submitTotal = (e) => {
 		e.preventDefault();
-		console.log(typeof amount);
+
 		let data = {
 			total: parseFloat(amount)
 		};
 
-		API.sendTotal(data)
-			.then()
-			.catch();
+		if (!amount) alert("please enter total");
+		else {
+			API.sendTotal(data)
+				.then((res) => {
+					console.log(res.data);
+				})
+				.catch((err) => console.log(err));
+		}
 	};
+
 	return (
 		<Fragment>
 			<div className="intro">

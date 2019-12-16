@@ -4,7 +4,10 @@ const Bill = require("../models/bill");
 module.exports = {
 	totalLeft: function(req, res) {
 		let body = req.body;
+		let displayTotal = "$" + body.total;
 
-		console.log(typeof body.total);
+		res.send({
+			display: displayTotal
+		});
 	}
 };
