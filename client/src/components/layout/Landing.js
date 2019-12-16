@@ -6,19 +6,26 @@ const Landing = () => {
 		amount: ""
 	});
 
-	const { amount } = billData;
+	let { amount } = billData;
 
 	const onInputChange = (e) => {
 		setBillData({ ...billData, [e.target.name]: e.target.value });
-		// if(amount === )
+		// original regex ^[0-9.]*$
+		let test = /^[0-9]+(\.+[0-9]{0,2})?$/.test(e.target.value);
+
+		if (!test) {
+			setBillData({ ...billData, [e.target.name]: "" });
+		}
 	};
 
 	const submitTotal = (e) => {
 		e.preventDefault();
-		let startingTotal = amount;
-		let test = parseFloat(startingTotal);
-
-		console.log(test, startingTotal);
+		console.log(amount);
+		// let test = /[0-9].[0-9]{2,}/.test(startingTotal);
+		// console.log(test, startingTotal);
+		// API.test()
+		// 	.then()
+		// 	.catch();
 	};
 	return (
 		<Fragment>
