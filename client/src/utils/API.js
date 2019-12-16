@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
 	// test
-	test: function(amount) {
-		return axios.post("");
+	sendTotal: function(amount) {
+		return axios.post("api/bill/", amount);
 	}
 };

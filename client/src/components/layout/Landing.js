@@ -20,12 +20,14 @@ const Landing = () => {
 
 	const submitTotal = (e) => {
 		e.preventDefault();
-		console.log(amount);
-		// let test = /[0-9].[0-9]{2,}/.test(startingTotal);
-		// console.log(test, startingTotal);
-		// API.test()
-		// 	.then()
-		// 	.catch();
+		console.log(typeof amount);
+		let data = {
+			total: parseFloat(amount)
+		};
+
+		API.sendTotal(data)
+			.then()
+			.catch();
 	};
 	return (
 		<Fragment>
