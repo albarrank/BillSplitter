@@ -43,8 +43,6 @@ const Landing = () => {
 		else {
 			API.sendTotal(data)
 				.then((res) => {
-					console.log(res.data);
-
 					// setting redirect state along with data passing into props
 					setRedirectState({ redirect: true, data: res.data });
 				})
@@ -76,7 +74,7 @@ const Landing = () => {
 				<div className="total-input">
 					<h3>Please Enter the amount of the bill</h3>
 					<input
-						type="text"
+						type="number"
 						placeholder="Enter total here"
 						name="amount"
 						value={amount}
