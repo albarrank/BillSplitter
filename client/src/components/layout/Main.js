@@ -12,8 +12,8 @@ const Main = ({
 	let [formData, setFormData] = useState({
 		fname: "",
 		lNmae: "",
-		subTotal: "",
-		amount: 0
+		subTotal: 0,
+		amount: ""
 	});
 
 	let { fname, lNmae, subTotal, amount } = formData;
@@ -24,7 +24,9 @@ const Main = ({
 				<h1>Total Left: </h1>
 				<h2>{total.display}</h2>
 			</header>
-			<div className="form-wrapper">
+
+			<div className="form_wrapper">
+				<h2>SubTotal: {subTotal}</h2>
 				<form>
 					<div className="form-group">
 						<label htmlFor="fname">First Name</label>
@@ -52,9 +54,13 @@ const Main = ({
 							placeholder="0"
 							className="form-control"
 						/>
+						<button className="btn btn-dark btn-lg btn-block">
+							add
+						</button>
 					</div>
 				</form>
 			</div>
+
 			<div className="member_display">
 				<Card />
 			</div>

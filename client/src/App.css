@@ -7,3 +7,11 @@
 .main {
   margin-top: 7rem;
 }
+
+/*================= Form ================ */
+.form_wrapper {
+  background-color: rgb(41, 136, 143);
+  padding: 1rem;
+  border-radius: 10%;
+  color: white;
+}
