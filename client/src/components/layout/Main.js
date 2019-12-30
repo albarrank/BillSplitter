@@ -3,20 +3,28 @@ import { Redirect, Link } from "react-router-dom";
 import API from "../../utils/API";
 
 import Card from "./people/PeopleCards";
+import Landing from "./Landing";
 
 const Main = ({
 	location: {
 		state: { total }
 	}
 }) => {
+	// INITIALIZING STATES
 	let [formData, setFormData] = useState({
 		fname: "",
 		lname: "",
-		subTotal: "0",
+		subTotal: 0,
 		amount: ""
 	});
 
+	let [cardData, setCardData] = useState({
+		payees: []
+	});
+
+	// DECONSTRUCTION PROPERTIES FROM STATE
 	let { fname, lname, subTotal, amount } = formData;
+	let { payees } = cardData;
 
 	const onInputChange = (e) => {
 		if (e.target.name === "amount") {
@@ -38,13 +46,37 @@ const Main = ({
 		let check = checkSubTotal(total, newSubTotal);
 
 		if (check) {
-			setFormData({ ...formData, subTotal: newSubTotal.toFixed(2) });
+			setFormData({
+				...formData,
+				subTotal: newSubTotal.toFixed(2),
+				amount: ""
+			});
 		} else alert("SubTotal is over Total Amount");
 	};
 
 	const checkSubTotal = (total, subTotal) => {
-		let original = total.display;
-		return original > subTotal;
+		return total.display > subTotal;
+	};
+
+	const createPayee = () => {
+		let payee = {
+			title:
+				fname.slice(0, 1).toLocaleUpperCase() +
+				lname.slice(0, 1).toLocaleUpperCase(),
+			amount: subTotal,
+			percentage: `${calulatePercent()}%`,
+			tip: `$${caculateTip()}`
+		};
+
+		setCardData({ ...cardData, payees: [...payees, payee] });
+	};
+
+	const calulatePercent = () => {
+		return Math.floor((parseFloat(subTotal) / total.display) * 100);
+	};
+
+	const caculateTip = () => {
+		return (parseFloat(subTotal) * 0.15).toFixed(2);
 	};
 
 	return (
@@ -102,7 +134,12 @@ const Main = ({
 					</div>
 				</form>
 
-				<button className="create-card"> Add person</button>
+				<button
+					className="create-card btn btn-dark btn-lg"
+					onClick={(e) => createPayee(e)}
+				>
+					Add person
+				</button>
 			</div>
 
 			<div className="member_display">
