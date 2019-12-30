@@ -27,9 +27,7 @@ const Landing = () => {
 		// checks to see if the target value of the input box is in the format of US Currency
 		let test = /^[0-9]+(\.+[0-9]{0,2})?$/.test(e.target.value);
 
-		if (!test) {
-			setBillData({ ...billData, [e.target.name]: "" });
-		}
+		if (!test) setBillData({ ...billData, [e.target.name]: "" });
 	};
 
 	const submitTotal = (e) => {

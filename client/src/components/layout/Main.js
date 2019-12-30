@@ -18,6 +18,10 @@ const Main = ({
 
 	let { fname, lNmae, subTotal, amount } = formData;
 
+	const onInputChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
 	return (
 		<Fragment>
 			<header className="total_display">
@@ -51,10 +55,14 @@ const Main = ({
 						<input
 							type="number"
 							id="amount"
+							name="amount"
+							value={amount}
+							required
+							onChange={(e) => onInputChange(e)}
 							placeholder="0"
 							className="form-control"
 						/>
-						<button className="btn btn-dark btn-lg btn-block">
+						<button className="btn btn-dark btn-lg btn-block" onsu>
 							add
 						</button>
 					</div>

@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Connecting to port number
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5000;
 
 // Server static assests in production
 if (process.env.NODE_ENV === "production") {
