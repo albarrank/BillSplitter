@@ -11,32 +11,60 @@ const Main = ({
 }) => {
 	let [formData, setFormData] = useState({
 		fname: "",
-		lNmae: "",
-		subTotal: 0,
+		lname: "",
+		subTotal: "0",
 		amount: ""
 	});
 
-	let { fname, lNmae, subTotal, amount } = formData;
+	let { fname, lname, subTotal, amount } = formData;
 
 	const onInputChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		if (e.target.name === "amount") {
+			let USFormatTest = /^[0-9]+(\.+[0-9]{0,2})?$/.test(e.target.value);
+
+			if (!USFormatTest)
+				setFormData({ ...formData, [e.target.name]: "" });
+			else setFormData({ ...formData, [e.target.name]: e.target.value });
+		} else setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const changeSubTotal = (e) => {
+		e.preventDefault();
+		if (amount === "") return alert("Please enter item amount!");
+
+		let newSubTotal = parseFloat(subTotal);
+		newSubTotal += parseFloat(amount);
+
+		let check = checkSubTotal(total, newSubTotal);
+
+		if (check) {
+			setFormData({ ...formData, subTotal: newSubTotal.toFixed(2) });
+		} else alert("SubTotal is over Total Amount");
+	};
+
+	const checkSubTotal = (total, subTotal) => {
+		let original = total.display;
+		return original > subTotal;
 	};
 
 	return (
 		<Fragment>
 			<header className="total_display">
 				<h1>Total Left: </h1>
-				<h2>{total.display}</h2>
+				<h2>${total.display}</h2>
 			</header>
 
 			<div className="form_wrapper">
-				<h2>SubTotal: {subTotal}</h2>
+				<h2>SubTotal: ${subTotal}</h2>
 				<form>
 					<div className="form-group">
 						<label htmlFor="fname">First Name</label>
 						<input
 							type="text"
 							id="fname"
+							name="fname"
+							value={fname}
+							onChange={(e) => onInputChange(e)}
 							className="form-control"
 							placeholder="Billy"
 						/>
@@ -46,6 +74,9 @@ const Main = ({
 						<input
 							type="text"
 							id="lname"
+							name="lname"
+							value={lname}
+							onChange={(e) => onInputChange(e)}
 							placeholder="Bob"
 							className="form-control"
 						/>
@@ -53,7 +84,7 @@ const Main = ({
 					<div className="form-group">
 						<label htmlFor="amount">Amount To Add</label>
 						<input
-							type="number"
+							type="text"
 							id="amount"
 							name="amount"
 							value={amount}
@@ -62,11 +93,16 @@ const Main = ({
 							placeholder="0"
 							className="form-control"
 						/>
-						<button className="btn btn-dark btn-lg btn-block" onsu>
-							add
+						<button
+							className="btn btn-dark btn-lg btn-block"
+							onClick={(e) => changeSubTotal(e)}
+						>
+							Add to total
 						</button>
 					</div>
 				</form>
+
+				<button className="create-card"> Add person</button>
 			</div>
 
 			<div className="member_display">
