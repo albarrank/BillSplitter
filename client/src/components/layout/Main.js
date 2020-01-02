@@ -1,7 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
-import API from "../../utils/API";
-
 import Card from "./people/PeopleCards";
 import Landing from "./Landing";
 
