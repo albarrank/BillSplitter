@@ -1,10 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 
-const PeopleCard = () => {
+const PeopleCard = ({ payee }) => {
+	console.log(payee);
 	return (
 		<Fragment>
-			<h1>this is a people card for main.js</h1>
+			<div className="card-display">
+				<h1>{payee.title}</h1>
+			</div>
 		</Fragment>
 	);
 };

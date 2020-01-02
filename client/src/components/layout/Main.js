@@ -22,9 +22,14 @@ const Main = ({
 		payees: []
 	});
 
+	let [billData, setBillData] = useState({
+		bill: total.display
+	});
+
 	// DECONSTRUCTION PROPERTIES FROM STATE
 	let { fname, lname, subTotal, amount } = formData;
 	let { payees } = cardData;
+	let { bill } = billData;
 
 	const onInputChange = (e) => {
 		if (e.target.name === "amount") {
@@ -36,6 +41,7 @@ const Main = ({
 		} else setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
+	// Handles subtotal
 	const changeSubTotal = (e) => {
 		e.preventDefault();
 		if (amount === "") return alert("Please enter item amount!");
@@ -58,6 +64,7 @@ const Main = ({
 		return total.display > subTotal;
 	};
 
+	// Handles creating payees
 	const createPayee = () => {
 		let payee = {
 			title:
@@ -69,6 +76,9 @@ const Main = ({
 		};
 
 		setCardData({ ...cardData, payees: [...payees, payee] });
+
+		changeBillTotal();
+		resetForm();
 	};
 
 	const calulatePercent = () => {
@@ -79,11 +89,27 @@ const Main = ({
 		return (parseFloat(subTotal) * 0.15).toFixed(2);
 	};
 
+	const resetForm = () => {
+		setFormData({
+			...formData,
+			subTotal: 0,
+			amount: "",
+			fname: "",
+			lname: ""
+		});
+	};
+
+	const changeBillTotal = () => {
+		let newBill = parseFloat(bill) - parseFloat(subTotal);
+		newBill = newBill.toFixed(2);
+		setBillData({ ...billData, bill: newBill });
+	};
+
 	return (
 		<Fragment>
 			<header className="total_display">
 				<h1>Total Left: </h1>
-				<h2>${total.display}</h2>
+				<h2>${bill}</h2>
 			</header>
 
 			<div className="form_wrapper">
@@ -92,6 +118,7 @@ const Main = ({
 					<div className="form-group">
 						<label htmlFor="fname">First Name</label>
 						<input
+							required
 							type="text"
 							id="fname"
 							name="fname"
@@ -104,6 +131,7 @@ const Main = ({
 					<div className="form-group">
 						<label htmlFor="lname">Last Name</label>
 						<input
+							required
 							type="text"
 							id="lname"
 							name="lname"
@@ -116,6 +144,7 @@ const Main = ({
 					<div className="form-group">
 						<label htmlFor="amount">Amount To Add</label>
 						<input
+							required
 							type="text"
 							id="amount"
 							name="amount"
@@ -142,8 +171,10 @@ const Main = ({
 				</button>
 			</div>
 
-			<div className="member_display">
-				<Card />
+			<div className="member-display">
+				{payees.map((value, index) => {
+					return <Card key={index} payee={value} />;
+				})}
 			</div>
 		</Fragment>
 	);
