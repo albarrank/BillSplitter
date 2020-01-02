@@ -107,12 +107,12 @@ const Main = ({
 
 	return (
 		<Fragment>
-			<header className="total_display">
+			<header className="total-display">
 				<h1>Total Left: </h1>
 				<h2>${bill}</h2>
 			</header>
 
-			<div className="form_wrapper">
+			<div className="form-wrapper">
 				<h2>SubTotal: ${subTotal}</h2>
 				<form>
 					<div className="form-group">
@@ -171,7 +171,7 @@ const Main = ({
 				</button>
 			</div>
 
-			<div className="member-display">
+			<div className="payee-display">
 				{payees.map((value, index) => {
 					return <Card key={index} payee={value} />;
 				})}

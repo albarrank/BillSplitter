@@ -9,9 +9,21 @@
 }
 
 /*================= Form ================ */
-.form_wrapper {
+.form-wrapper {
   background-color: rgb(41, 136, 143);
   padding: 1rem;
   border-radius: 10%;
   color: white;
+}
+
+/*================= PayeeDisplay ================ */
+.payee-display {
+  margin-top: 2rem;
+}
+.card-display {
+  background-color:  rgb(23, 113, 119);
+  color: white;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 10%;
 }
