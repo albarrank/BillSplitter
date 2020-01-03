@@ -23,7 +23,6 @@ const Landing = () => {
 		// setting state of billData.amount equal to a copy of billData along with the value input in the text box
 		setBillData({ ...billData, [e.target.name]: e.target.value });
 
-		// original regex ^[0-9.]*$
 		// checks to see if the target value of the input box is in the format of US Currency
 		let USFormatTest = /^[0-9]+(\.+[0-9]{0,2})?$/.test(e.target.value);
 

@@ -1,5 +1,5 @@
 // LIBRARIES
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 // COMPONENTS
@@ -154,7 +154,6 @@ const Main = ({
 							id="amount"
 							name="amount"
 							value={amount}
-							required
 							onChange={(e) => onInputChange(e)}
 							placeholder="0"
 							className="form-control"

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 const PeopleCard = ({ payee }) => {
-	console.log(payee);
 	return (
 		<Fragment>
 			<div className="card-display">
