@@ -18,7 +18,7 @@ function App() {
 				<section className="container main">
 					<Switch>
 						<Route exact path="/" component={Landing} />
-						<Route exact path="/main" component={Main} />{" "}
+						<Route exact path="/main" component={Main} />
 					</Switch>
 				</section>
 			</Fragment>

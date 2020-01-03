@@ -1,6 +1,9 @@
+// LIBRARIES
 import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+// COMPONENTS
 import Card from "./people/PeopleCards";
-import Landing from "./Landing";
 
 const Main = ({
 	location: {
@@ -63,6 +66,7 @@ const Main = ({
 
 	// Handles creating payees
 	const createPayee = () => {
+		if (fname === "" || lname === "") return alert("Please fill out names");
 		let payee = {
 			title:
 				fname.slice(0, 1).toLocaleUpperCase() +
@@ -104,6 +108,10 @@ const Main = ({
 
 	return (
 		<Fragment>
+			<Link to="/">
+				<i className="fas fa-arrow-circle-left"></i>
+			</Link>
+
 			<header className="total-display">
 				<h1>Total Left: </h1>
 				<h2>${bill}</h2>

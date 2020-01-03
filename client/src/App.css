@@ -16,6 +16,11 @@
   color: white;
 }
 
+.fa-arrow-circle-left{
+  font-size: 3rem;
+  color: rgb(65, 173, 132);
+}
+
 /*================= PayeeDisplay ================ */
 .payee-display {
   margin-top: 2rem;
