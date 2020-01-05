@@ -6,11 +6,10 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon server\" \"npm run client\"",
+    "start:dev": "concurrently \"nodemon\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "build": "npm install && cd client && npm install && npm run build",
-    "heroku-postbuild": "npm run build"
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,11 +21,11 @@
     "url": "https://github.com/albarrank/BillSplitter/issues"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "if-env": "^1.0.4"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
-    "if-env": "^1.0.4",
     "nodemon": "^2.0.1"
   }
 }
