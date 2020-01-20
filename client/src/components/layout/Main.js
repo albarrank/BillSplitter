@@ -44,14 +44,15 @@ const Main = ({
 	// Handles subtotal
 	const changeSubTotal = (e) => {
 		e.preventDefault();
+
 		if (amount === "") return alert("Please enter item amount!");
 
 		let newSubTotal = parseFloat(subTotal);
 		newSubTotal += parseFloat(amount);
 
-		let check = checkSubTotal(total, newSubTotal);
+		let bigger = checkSubTotal(bill, newSubTotal);
 
-		if (check) {
+		if (!bigger) {
 			setFormData({
 				...formData,
 				subTotal: newSubTotal.toFixed(2),
@@ -61,7 +62,7 @@ const Main = ({
 	};
 
 	const checkSubTotal = (total, subTotal) => {
-		return total.display > subTotal;
+		return subTotal > parseFloat(total);
 	};
 
 	// Handles creating payees
@@ -112,6 +113,16 @@ const Main = ({
 				<i className="fas fa-arrow-circle-left"></i>
 			</Link>
 
+			<br />
+			<h4>Directions:</h4>
+			<h6>
+				Add each individual price of item you want to pay and hit add
+				until desired subTotal.
+				<br /> <br />
+				When your done press add person to create the member of your
+				group and see how much each person has to pay.
+			</h6>
+
 			<header className="total-display">
 				<h1>Total Left: </h1>
 				<h2>${bill}</h2>
@@ -148,9 +159,13 @@ const Main = ({
 					</div>
 					<div className="form-group">
 						<label htmlFor="amount">Amount To Add</label>
+						<br />
+						<label htmlFor="amount">
+							Please use US Format i.e $2.34
+						</label>
 						<input
 							required
-							type="text"
+							type="number"
 							id="amount"
 							name="amount"
 							value={amount}

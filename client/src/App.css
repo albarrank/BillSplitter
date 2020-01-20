@@ -11,9 +11,10 @@
 /*================= Form ================ */
 .form-wrapper {
   background-color: rgb(41, 136, 143);
-  padding: 1rem;
+  padding: 2rem;
+  margin-top: 2rem;
   border-radius: 10%;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .fa-arrow-circle-left{
@@ -28,7 +29,7 @@
 }
 .card-display {
   background-color:  rgb(23, 113, 119);
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 2rem;
   margin-top: 2rem;
   border-radius: 10%;

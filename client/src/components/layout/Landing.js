@@ -62,14 +62,19 @@ const Landing = () => {
 					<h2>Welcome to BillSplit!</h2>
 					<p>
 						Taking all of the hassle of having to talk and figure
-						out who is paying for what. <br></br>
-						<br></br>Now you can figure it all out with out even
-						having to say a word especially to the ones you hate!
+						out who is paying for what.
+						<br />
+						Now you can figure it all out with out just based of the
+						price of the items that the persone ordered!
+						<br />
+						Create individual cards for each member of you party and
+						see what everyone has to pay.
 					</p>
 				</div>
 
 				<div className="total-input">
-					<h3>Please Enter the amount of the bill</h3>
+					<h3>Enter the amount of the bill</h3>
+					<h6> Please use US Format i.e $2.34</h6>
 					<input
 						type="number"
 						placeholder="Enter total here"
