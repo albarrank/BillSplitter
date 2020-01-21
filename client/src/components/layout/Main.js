@@ -41,7 +41,7 @@ const Main = ({
 		} else setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	// Handles subtotal
+	// Handles Subtotal
 	const changeSubTotal = (e) => {
 		e.preventDefault();
 
